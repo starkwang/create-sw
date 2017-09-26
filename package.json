@@ -17,6 +17,7 @@
     "glob": "^7.1.2",
     "lodash.defaults": "^4.2.0",
     "lodash.template": "^4.4.0",
+    "md5": "^2.2.1",
     "meow": "^3.7.0",
     "mkdirp": "^0.5.1",
     "pretty-bytes": "^4.0.2",
