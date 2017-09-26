@@ -28,8 +28,7 @@
   "bugs": "https://github.com/starkwang/create-sw/issues",
   "license": "Apache-2.0",
   "scripts": {
-    "test": "gulp test lint",
-    "doctoc": "doctoc"
+    "test": "cd test && node ../cli.js --config=sw-config.js && cd .."
   },
   "files": [
     "cli.js",
