@@ -28,7 +28,7 @@
   "bugs": "https://github.com/starkwang/create-sw/issues",
   "license": "Apache-2.0",
   "scripts": {
-    "test": "cd test && node ../cli.js --config=sw-config.js && cd .."
+    "test": "cd test && webpack dist/index.js dist/bundle.js && node ../cli.js --config=sw-config.js && cd .."
   },
   "files": [
     "cli.js",
@@ -37,5 +37,8 @@
   ],
   "bin": {
     "create-sw": "cli.js"
+  },
+  "devDependencies": {
+    "webpack": "^3.6.0"
   }
 }

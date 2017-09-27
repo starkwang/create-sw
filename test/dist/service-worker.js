@@ -12,7 +12,7 @@ self.addEventListener('message', function(ev) {
   })
 });
 
-var precacheConfig = [["/a.js","40f89dc7d57495b598468bc7313bd6f4"],["/b.js","e29dbc7eb6cea498bce805938166b3dc"],["/index.html","44cf9bd67f80e95563de4108ca753df4"],["https://cdn.bootcss.com/jquery/3.2.1/core.js","0303ee2d8f211aa93f872eb045e51d7f"]];
+var precacheConfig = [["/a.js","40f89dc7d57495b598468bc7313bd6f4"],["/b.js","e29dbc7eb6cea498bce805938166b3dc"],["/bundle.js","9e6978845d590b977cb30e4f53eb636c"],["/index.html","00ad439b003b93fd331d4477497920bf"],["/index.js","f6ecb1fb903040190a4bf02ebdd3eb22"],["https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js","c9f5aeeca3ad37bf2aa006139b935f0a"]];
 var cacheName = 'create-sw-v3-create-sw-' + (self.registration ? self.registration.scope : '');
 
 

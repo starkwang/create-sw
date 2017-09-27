@@ -10,23 +10,24 @@
   <button onclick="sendMessage()"></button>
   <script type="text/javascript" src="a.js"></script>
   <script type="text/javascript" src="b.js"></script>
-  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 </body>
 <script>
-  navigator.serviceWorker.onmessage = function (e) {
-    // messages from service worker.
-    console.log('e.data', e.data);
-  };
+  // navigator.serviceWorker.onmessage = function (e) {
+  //   // messages from service worker.
+  //   console.log('e.data', e.data);
+  // };
 
-  // port2给对方
-  navigator.serviceWorker.register('/service-worker.js').then(() => {
-    return navigator.serviceWorker.ready
-  })
+  // // port2给对方
+  // navigator.serviceWorker.register('/service-worker.js').then(() => {
+  //   return navigator.serviceWorker.ready
+  // })
 
-  function sendMessage() {
-    navigator.serviceWorker.controller.postMessage('hello world!');
-  }
+  // function sendMessage() {
+  //   navigator.serviceWorker.controller.postMessage('hello world!');
+  // }
 
 </script>
+<script type="text/javascript" src="bundle.js"></script>
 
 </html>
