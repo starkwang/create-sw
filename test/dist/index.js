@@ -1,6 +1,5 @@
 var runtime = require('../../runtime');
-runtime.install({
-    publicPath: './service-worker.js',
+runtime.install('./service-worker.js', {
     onUpdated() {
         console.log('onUpdated!!!!!!!!')
     }

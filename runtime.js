@@ -1,5 +1,4 @@
 var defaults = require('lodash.defaults');
-var appCacheIframe;
 function hasSW() {
   return 'serviceWorker' in navigator &&
     // This is how I block Chrome 40 and detect Chrome 41, because first has
@@ -8,16 +7,16 @@ function hasSW() {
     (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname.indexOf('127.') === 0)
 }
 
-function install(options) {
+function install(url, options) {
   options || (options = {});
   options = defaults(options || {}, {});
 
   if (hasSW()) {
-    if (!options.publicPath) {
-      console.warn('options.publicPath is not defined, using \'/sw.js\' for defaults')
+    if (!url) {
+      console.warn('url is not defined, using \'/sw.js\' for defaults')
     }
     var registration = navigator.serviceWorker
-      .register(options.publicPath || '/sw.js');
+      .register(url || '/sw.js');
 
 
     var handleUpdating = function (registration) {

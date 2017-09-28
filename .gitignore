@@ -59,3 +59,4 @@ typings/
 .env
 
 /test/dist/bundle.js
+/test/dist/service-worker.js
