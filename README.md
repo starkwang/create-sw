@@ -1,3 +1,10 @@
+# [![npm version](https://badge.fury.io/js/create-sw.svg)](https://badge.fury.io/js/create-sw)
+
+# create-sw
+A tool to generate robust Service Worker for your application.
+
+
+
 ## Install
 ```
 npm i -S create-sw
