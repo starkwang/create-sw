@@ -1,4 +1,5 @@
-var defaults = require('lodash.defaults')
+const defaults = require('lodash.defaults')
+
 function hasSW() {
   return 'serviceWorker' in navigator &&
     // This is how I block Chrome 40 and detect Chrome 41, because first has
@@ -7,27 +8,25 @@ function hasSW() {
     (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname.indexOf('127.') === 0)
 }
 
-function install(url, options) {
-  options || (options = {})
-  options = defaults(options || {}, {})
+function install(url, opt) {
+  const options = defaults(opt || {}, {})
 
   if (hasSW()) {
     if (!url) {
       console.warn('url is not defined, using \'/sw.js\' for defaults')
     }
-    var registration = navigator.serviceWorker
+    const registration = navigator.serviceWorker
       .register(url || '/sw.js')
 
 
-    var handleUpdating = function (registration) {
-      var sw = registration.installing || registration.waiting
-      var ignoreInstalling
-      var ignoreWaiting
+    function handleUpdating(registration) {
+      const sw = registration.installing || registration.waiting
+      let ignoreWaiting
 
       // No SW or already handled
       if (!sw || sw.onstatechange) return
 
-      var stateChangeHandler
+      let stateChangeHandler
 
       // Already has SW
       if (registration.active) {
@@ -38,7 +37,7 @@ function install(url, options) {
         stateChangeHandler = onInstallStateChange
       }
 
-      ignoreInstalling = true
+      const ignoreInstalling = true
       if (registration.waiting) {
         ignoreWaiting = true
       }
@@ -47,54 +46,60 @@ function install(url, options) {
 
       function onUpdateStateChange() {
         switch (sw.state) {
-        case 'redundant': {
-          sendEvent('onUpdateFailed')
-          sw.onstatechange = null
-        } break
+          case 'redundant':
+            sendEvent('onUpdateFailed')
+            sw.onstatechange = null
+            break
 
-        case 'installing': {
-          if (!ignoreInstalling) {
-            sendEvent('onUpdating')
-          }
-        } break
+          case 'installing':
+            if (!ignoreInstalling) {
+              sendEvent('onUpdating')
+            }
+            break
 
-        case 'installed': {
-          if (!ignoreWaiting) {
-            sendEvent('onUpdateReady')
-          }
-        } break
+          case 'installed':
+            if (!ignoreWaiting) {
+              sendEvent('onUpdateReady')
+            }
+            break
 
-        case 'activated': {
-          sendEvent('onUpdated')
-          sw.onstatechange = null
-        } break
+          case 'activated':
+            sendEvent('onUpdated')
+            sw.onstatechange = null
+            break
+
+          default:
+            break
         }
       }
 
       function onInstallStateChange() {
         switch (sw.state) {
-        case 'redundant': {
-          // Failed to install, ignore
-          sw.onstatechange = null
-        } break
+          case 'redundant':
+            // Failed to install, ignore
+            sw.onstatechange = null
+            break
 
-        case 'installing': {
-          // Installing, ignore
-        } break
+          case 'installing':
+            // Installing, ignore
+            break
 
-        case 'installed': {
-          // Installed, wait activation
-        } break
+          case 'installed':
+            // Installed, wait activation
+            break
 
-        case 'activated': {
-          sendEvent('onInstalled')
-          sw.onstatechange = null
-        } break
+          case 'activated':
+            sendEvent('onInstalled')
+            sw.onstatechange = null
+            break
+
+          default:
+            break
         }
       }
     }
 
-    var sendEvent = function (event) {
+    function sendEvent(event) {
       if (typeof options[event] === 'function') {
         options[event]({
           source: 'ServiceWorker'
@@ -102,7 +107,7 @@ function install(url, options) {
       }
     }
 
-    registration.then(function (reg) {
+    registration.then((reg) => {
       // WTF no reg?
       if (!reg) return
 
@@ -117,22 +122,21 @@ function install(url, options) {
       if (options.autoUpdate) {
         setInterval(update, 1000)
       }
-      reg.onupdatefound = function () {
+      reg.onupdatefound = function onupdatefound() {
         handleUpdating(reg)
       }
-    }).catch(function (err) {
+    }).catch((err) => {
       sendEvent('onError')
       return Promise.reject(err)
     })
-    return
   }
 }
 
 function applyUpdate(callback, errback) {
   if (hasSW()) {
-    navigator.serviceWorker.getRegistration().then(function (registration) {
+    navigator.serviceWorker.getRegistration().then((registration) => {
       if (!registration || !registration.waiting) {
-        errback && errback()
+        if (errback) errback()
         return
       }
 
@@ -140,18 +144,16 @@ function applyUpdate(callback, errback) {
         action: 'skipWaiting'
       })
 
-      callback && callback()
+      if (callback) callback()
     })
-
-    return
   }
 }
 
 function update() {
   if (hasSW()) {
-    navigator.serviceWorker.getRegistration().then(function (registration) {
+    navigator.serviceWorker.getRegistration().then((registration) => {
       if (!registration) return
-      return registration.update()
+      registration.update()
     })
   }
 }
