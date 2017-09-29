@@ -1,0 +1,13 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "indent": ["error", 2],
+        "semi": ["error", "never"],
+        "no-console": ["error", { "allow": ["log", "warn", "error"] }]
+    }
+}
