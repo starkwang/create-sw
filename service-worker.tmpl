@@ -1,16 +1,16 @@
 'use strict';
-self.addEventListener('message', function(ev) {
-  console.log('sw receive message..');
-  console.log(ev);
-  self.clients.matchAll().then( (clients) => {
-    if (clients && clients.length) {
-        // you need to decide which clients you want to send the message to..
-        const client = clients[0];
-        console.log('sw postmessage...', clients)
-        client.postMessage("your message");
-    }
-  })
-});
+// self.addEventListener('message', function(ev) {
+//   console.log('sw receive message..');
+//   console.log(ev);
+//   self.clients.matchAll().then( (clients) => {
+//     if (clients && clients.length) {
+//         // you need to decide which clients you want to send the message to..
+//         const client = clients[0];
+//         console.log('sw postmessage...', clients)
+//         client.postMessage("your message");
+//     }
+//   })
+// });
 
 var precacheConfig = <%= precacheConfig %>;
 var cacheName = 'create-sw-<%= version %>-<%= cacheId %>-' + (self.registration ? self.registration.scope : '');
@@ -103,7 +103,6 @@ self.addEventListener('activate', function(event) {
 <% if (handleFetch) { %>
 self.addEventListener('fetch', function(event) {
   self.clients.matchAll().then( (clients) => {
-    console.log('clients', clients)
     if (clients && clients.length) {
         // you need to decide which clients you want to send the message to..
         const client = clients[0];
