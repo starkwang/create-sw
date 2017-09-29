@@ -1,9 +1,9 @@
 module.exports = {
   staticFileGlobs: [
-    'dist/**'
+    '/dist/**'
   ],
   stripPrefixMulti: {
-    'dist/': '/'
+    '/dist/': '/'
   },
   swFile: '/dist/service-worker.js',
   externals: [

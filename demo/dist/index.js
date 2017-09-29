@@ -1,4 +1,4 @@
-var runtime = require('create-sw/runtime');
+var runtime = require('../../runtime');
 runtime.install('./service-worker.js', {
     onInstalled() {
         console.log('onInstalled')
