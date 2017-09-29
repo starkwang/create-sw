@@ -33,6 +33,7 @@ create-sw --config=sw-config.js
 An array contains the external resources url that you want to precache.
 
 ```js
+// sw-config.js
 module.exports = {
   // ...
   externals: [
