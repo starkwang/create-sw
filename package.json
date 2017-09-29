@@ -29,9 +29,11 @@
   "bugs": "https://github.com/starkwang/create-sw/issues",
   "license": "Apache-2.0",
   "scripts": {
+    "dist": "babel lib/runtime.js > runtime.js",
     "test": "istanbul cover _mocha test/test.js",
     "demo": "cd demo && webpack dist/index.js dist/bundle.js && node ../cli.js --config=sw-config.js && cd ..",
-    "lint": "eslint lib/*.js runtime.js cli.js"
+    "lint": "eslint lib/*.js runtime.js cli.js",
+    "publish": "npm run dist && npm publish"
   },
   "files": [
     "cli.js",
@@ -43,6 +45,8 @@
     "create-sw": "cli.js"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
     "eslint": "^4.7.2",
     "eslint-config-airbnb-base": "^12.0.1",
     "eslint-plugin-import": "^2.7.0",
