@@ -1,9 +1,9 @@
 module.exports = {
   staticFileGlobs: [
-    '/dist/**'
+    './dist/**'
   ],
   stripPrefixMulti: {
-    '/dist/': '/'
+    './dist/': '/'
   },
   swFile: '/dist/service-worker.js',
   externals: [
@@ -12,5 +12,6 @@ module.exports = {
   runtimeCaching: [{
     urlPattern: /api/,
     handler: 'networkFirst'
-  }]
-};
+  }],
+  minify: true
+}

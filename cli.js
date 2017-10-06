@@ -101,9 +101,14 @@ function setDefaults(cli, configFileFlags) {
   compositeFlags.dontCacheBustUrlsMatching =
     compositeFlags.dontCacheBustUrlsMatching ||
     configFileFlags.dontCacheBustUrlsMatching
+
   compositeFlags.externals =
     compositeFlags.externals ||
     configFileFlags.externals
+
+  compositeFlags.minify =
+    compositeFlags.minify ||
+    configFileFlags.minify
 
   return compositeFlags
 }

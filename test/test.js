@@ -205,6 +205,24 @@ describe('sw-precache core functionality', function () {
     })
   })
 
+  it('should minify output', function (done) {
+    const config = {
+      logger: NOOP,
+      staticFileGlobs: [
+        'test/data/one/a.txt',
+        'test/data/one/c.txt',
+        'test/data/two/b.txt'
+      ],
+      stripPrefix: 'test',
+      minify: true
+    }
+    generate(config, function (error, responseString) {
+      assert.ifError(error)
+      console.log(responseString)
+      done()
+    })
+  })
+
   describe('with dynamicUrlToDependencies', function () {
     it('should allow passing a string value', function () {
       const config = {
@@ -215,7 +233,7 @@ describe('sw-precache core functionality', function () {
       }
 
       return generate(config).then(function (responseString) {
-        assert.notEqual(responseString.indexOf('["foo.png","900150983cd24fb0d6963f7d28e17f72"]'), -1)
+        assert.notEqual(responseString.indexOf('["foo.png", "900150983cd24fb0d6963f7d28e17f72"]'), -1)
       })
     })
 
@@ -228,7 +246,7 @@ describe('sw-precache core functionality', function () {
       }
 
       return generate(config).then(function (responseString) {
-        assert.notEqual(responseString.indexOf('["foo.png","b95f67f61ebb03619622d798f45fc2d3"]'), -1)
+        assert.notEqual(responseString.indexOf('["foo.png", "b95f67f61ebb03619622d798f45fc2d3"]'), -1)
       })
     })
   })
