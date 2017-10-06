@@ -186,6 +186,25 @@ describe('sw-precache core functionality', function () {
     })
   })
 
+  it('should produce external resources', function (done) {
+    const testUrl = 'https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'
+    const config = {
+      logger: NOOP,
+      staticFileGlobs: [
+        'test/data/one/a.txt',
+        'test/data/one/c.txt',
+        'test/data/two/b.txt'
+      ],
+      externals: [testUrl],
+      stripPrefix: 'test'
+    }
+    generate(config, function (error, responseString) {
+      assert.ifError(error)
+      assert.notStrictEqual(-1, responseString.indexOf(testUrl))
+      done()
+    })
+  })
+
   describe('with dynamicUrlToDependencies', function () {
     it('should allow passing a string value', function () {
       const config = {
