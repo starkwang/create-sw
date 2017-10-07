@@ -1,6 +1,6 @@
 {
   "name": "create-sw",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "author": {
     "name": "Weijia Wang",
@@ -35,7 +35,7 @@
     "test": "istanbul cover _mocha test/test.js",
     "demo": "cd demo && webpack dist/index.js dist/bundle.js && node ../cli.js --config=sw-config.js && cd ..",
     "lint": "eslint lib/*.js runtime.js cli.js",
-    "publish": "npm run dist && npm publish"
+    "pub": "npm run dist && npm publish"
   },
   "files": [
     "cli.js",

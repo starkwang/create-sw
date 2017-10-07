@@ -43,6 +43,18 @@ module.exports = {
 };
 ```
 
+#### minify [Boolean]
+
+An option to deside if the output sw.js is minified. Defaults to `false`
+
+```js
+// sw-config.js
+module.exports = {
+  // ...
+  minify: true
+};
+``` 
+
 ### 2、runtime
 
 This tool also provides a runtime for you to install Service Worker and set a callback to the Service Worker lifecycle:
