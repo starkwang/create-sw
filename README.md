@@ -1,7 +1,7 @@
 # [![npm version](https://badge.fury.io/js/create-sw.svg)](https://badge.fury.io/js/create-sw)
 
 # create-sw
-A tool to generate robust Service Worker for your application.
+A tool to generate robust Service Worker for your application. Refactored and improved from [sw-precache](https://github.com/GoogleChromeLabs/sw-precache)
 
 
 
@@ -26,7 +26,7 @@ This tool provides a cli tool to help you build your own `service-worker.js`
 create-sw --config=sw-config.js
 ```
 
-`sw-config.js` has the same options in [sw-precache](https://www.npmjs.com/package/sw-precache) and some unique options:
+**`sw-config.js` has the same options in [sw-precache](https://www.npmjs.com/package/sw-precache) and some unique options:**
 
 #### externals [Array<string>]
 
